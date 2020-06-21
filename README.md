@@ -15,7 +15,7 @@ In practice, Meltdown and Spectre are side-channel attacks on vulnerable CPU har
 
 ## Meltdown
 
-Meltdown is a bug that "melts" the security boundaries normally enforced by the hardware, affecting desktops, laptops, and cloud computers.
+Meltdown is a bug that "melts" the security boundaries normally enforced by the hardware.
 
 By exploiting Meltdown, an attacker can use a program running on a machine to gain access to data from all over that machine that the program shouldn't normally be able to see, including data belonging to other programs and data that only administrators should have access to. Meltdown doesn't require too much knowledge of how the program the attacker hijacks works, but it only works with specific kinds of Intel chips.
 
@@ -25,7 +25,7 @@ The problem arises when caching and speculative execution start grappling with p
 
 ## Spectre
 
-Spectre is a flaw an attacker can exploit to force a program to reveal its data. The name derives from "speculative execution" — an optimization method a computer system performs to check whether it will work to prevent a delay when actually executed. Spectre affects almost all devices including desktops, laptops, cloud servers, and smartphones.
+Spectre is a flaw an attacker can exploit to force a program to reveal its data. The name derives from "speculative execution" — an optimization method a computer system performs to check whether it will work to prevent a delay when actually executed.
 
 Speculative execution involves a chip attempting to predict the future in order to work faster. If the chip knows that a program involves multiple logical branches, it will start working out the math for all of those branches before the program even has to decide between them. For instance, if the program says, "If A is true, compute function X; if A is false, compute function Y", the chip can start computing both functions X and Y in parallel, before it even knows whether A is true or false. Once it knows whether A is true or false, it already has a head start on what comes after, which speeds up processing overall. Or, in another variation, if a chip learns that a program makes use of the same function frequently, it might use idle time to compute that function even when it hasn't been asked to, just so it has what it thinks the answer will be on hand.
 
@@ -41,14 +41,14 @@ Microsoft<sup>[[5]](#5)</sup> applied the following mitigations to Windows:
 
 | Vulnerability | CVE | Public vulnerability name | Windows changes |
 |:-|:-|:-|:-|
-| Spectre Variant 1 | 2017-5753 | Bounds Check Bypass (BCB) | Recompiling with a new compiler<br>Hardened Browser to prevent exploit from JavaScript |
-| Spectre Variant 2 | 2017-5715 | Branch Target Injection (BTI) | New CPU instructions eliminating branch speculation |
-| Meltdown Variant 3 | 2017-5754 | Rogue Data Cache Load (RDCL) | Isolate kernel and user mode page tables |
+| Spectre Variant 1 | `CVE-2017-5753` | Bounds Check Bypass (BCB) | Recompiling with a new compiler<br>Hardened Browser to prevent exploit from JavaScript |
+| Spectre Variant 2 | `CVE-2017-5715` | Branch Target Injection (BTI) | New CPU instructions eliminating branch speculation |
+| Meltdown Variant 3 | `CVE-2017-5754` | Rogue Data Cache Load (RDCL) | Isolate kernel and user mode page tables |
 
 Microsoft's patch for Spectre Variant 2 also included a firmware change. They also said that users with older hardware (pre 2016) may experiences decreases in system performance. Most users with Windows 10 on newer silicon would experience a negligible performance impact.
 
-> The attacks in this repository were carried out inside of a VM running an unpatched version of Linux. 
-> Of note here is that even if the OS of the host machine is patched, the attack will work as long as the VM does not contain the patch.
+> **Note:** The attacks in this repository were carried out inside of a VM running an unpatched version of Linux. 
+> Of importance here is that even if the OS of the host machine is patched, the attack will work so long as the VM does not contain the patch.
 
 ---
 
