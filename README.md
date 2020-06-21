@@ -35,7 +35,7 @@ Spectre requires more intimate knowledge of the victim program's inner workings,
 
 Patches for Meltdown and Spectre generally mitigate the vulnerabilities by altering or disabling how software code makes use of the speculative execution and caching features built into the underlying hardware. The downside of this is that these features were designed to improve system performance, and so working around them can slow your systems down.
 
-Apple<sup>[[3]](#3)</sup> did not go into detail about their specific mitigations, but did say that there was no measurable reduction in performance in iOS or macOS. They also released full mitigation<sup>[[4]](#4)</sup> which is the ability to enable an additional CPU instruction and disable hyper-threading processing technology. Full mitigation further prevents unauthorized applications from exploiting Meltdown and Spectre
+Apple<sup>[[3]](#3)</sup> did not go into detail about their specific mitigations, but did say that there was no measurable reduction in performance in iOS or macOS. They also released full mitigation<sup>[[4]](#4)</sup> which is the ability to enable an additional CPU instruction and disable hyper-threading processing technology. Full mitigation further prevents unauthorized applications from exploiting Meltdown and Spectre among other things.
 
 Microsoft<sup>[[5]](#5)</sup> applied the following mitigations to Windows:
 
@@ -47,8 +47,7 @@ Microsoft<sup>[[5]](#5)</sup> applied the following mitigations to Windows:
 
 Microsoft's patch for Spectre Variant 2 also included a firmware change. They also said that users with older hardware (pre 2016) may experiences decreases in system performance. Most users with Windows 10 on newer silicon would experience a negligible performance impact.
 
-> **Note:** The attacks in this repository were carried out inside of a VM running an unpatched version of Linux. 
-> Of importance here is that even if the OS of the host machine is patched, the attack will work so long as the VM does not contain the patch.
+> **Note:** The attacks in this repository were carried out inside of a VM running an unpatched version of Linux. Of importance here is that even if the OS of the host machine is patched, the attack will work so long as the VM does not contain the patch.
 
 ---
 
@@ -64,3 +63,7 @@ Microsoft's patch for Spectre Variant 2 also included a firmware change. They al
 3. <a href="https://support.apple.com/en-us/HT210107" id="4">Additional mitigations for speculative execution vulnerabilities in Intel CPUs</a>  <i>Apple</i>
 
 5. <a href="https://www.microsoft.com/security/blog/2018/01/09/understanding-the-performance-impact-of-spectre-and-meltdown-mitigations-on-windows-systems/" id="5">Understanding the performance impact of Spectre and Meltdown mitigations on Windows Systems</a> <i>Microsoft</i>
+
+---
+
+Thank you for your interest, this project was fun and insightful!
