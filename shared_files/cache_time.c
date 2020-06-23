@@ -15,11 +15,15 @@ int main(int argc, const char **argv)
 
   // Initialize the array
   for (i = 0; i < 10; i++)
+  {
     array[i * 4096] = 1;
+  }
 
   // FLUSH the array from the CPU cache
   for (i = 0; i < 10; i++)
+  {
     _mm_clflush(&array[i * 4096]);
+  }
 
   // Access some of the array items
   array[3 * 4096] = 100;
