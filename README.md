@@ -45,7 +45,7 @@ Microsoft<sup>[[5]](#5)</sup> applied the following mitigations to Windows:
 | Spectre Variant 2 | `CVE-2017-5715` | Branch Target Injection (BTI) | New CPU instructions eliminating branch speculation |
 | Meltdown Variant 3 | `CVE-2017-5754` | Rogue Data Cache Load (RDCL) | Isolate kernel and user mode page tables |
 
-Microsoft's patch for Spectre Variant 2 also included a firmware change. They also said that users with older hardware (pre 2016) may experiences decreases in system performance. Most users with Windows 10 on newer silicon would experience a negligible performance impact.
+Microsoft's patch for Spectre Variant 2 also included a firmware change. They have stated that users with older hardware (pre 2016) may experience decreases in system performance. Most users with Windows 10 on newer hardware would experience a negligible performance impact.
 
 > **Note:** The attacks in this repository were carried out inside of a VM running an unpatched version of Linux. Of importance here is that even if the OS of the host machine is patched, the attack will work so long as the VM does not contain the patch.
 
