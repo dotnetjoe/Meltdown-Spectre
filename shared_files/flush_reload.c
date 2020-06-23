@@ -17,11 +17,15 @@ void flushSideChannel()
 
   // Write to array to bring it to RAM to prevent Copy-on-write
   for (i = 0; i < 256; i++)
+  {
     array[i * 4096 + DELTA] = 1;
+  }
 
   //flush the values of the array from cache
   for (i = 0; i < 256; i++)
+  {
     _mm_clflush(&array[i * 4096 + DELTA]);
+  }
 }
 
 void victim()
@@ -42,7 +46,7 @@ void reloadSideChannel()
     time1 = __rdtscp(&junk);
     junk = *addr;
     time2 = __rdtscp(&junk) - time1;
-    
+
     if (time2 <= CACHE_HIT_THRESHOLD)
     {
       printf("array[%d*4096 + %d] is in cache.\n", i, DELTA);
