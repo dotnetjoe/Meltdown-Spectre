@@ -7,7 +7,7 @@
 #include <linux/seq_file.h>
 #include <linux/uaccess.h>
 
-static char secret[8] = {'S', 'E', 'E', 'D', 'L', 'a', 'b', 's'};
+static char secret[8] = {'n', 'u', 'c', 'l', 'e', 'a', 'r', 'f', 'u', 's', 'i', 'o', 'n'};
 static struct proc_dir_entry *secret_entry;
 static char *secret_buffer;
 
@@ -20,8 +20,7 @@ static int test_proc_open(struct inode *inode, struct file *file)
 #endif
 }
 
-static ssize_t read_proc(struct file *filp, char *buffer,
-                         size_t length, loff_t *offset)
+static ssize_t read_proc(struct file *filp, char *buffer, size_t length, loff_t *offset)
 {
    memcpy(secret_buffer, &secret, 8);
    return 8;
@@ -45,7 +44,7 @@ static __init int test_proc_init(void)
 
    // create data entry in /proc
    secret_entry = proc_create_data("secret_data", 0444, NULL, &test_proc_fops, NULL);
-   
+
    if (secret_entry)
       return 0;
 
