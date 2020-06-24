@@ -2,9 +2,9 @@
 
 [![LICENSE](https://img.shields.io/github/license/adamalston/Meltdown-Spectre?color=black)](LICENSE)
 
-Meltdown and Spectre are the names given to different variants of the same fundamental underlying vulnerability that affects nearly every computer chip manufactured in the last two decades<sup>[[1]](#1)</sup>. If exploited, these vulnerabilities allow attackers to get access to data previously considered completely protected. Security researchers discovered the flaws late in 2017 and publicized them in early 2018. Technically speaking, there are three variations of the vulnerability, each given its own CVE number; two of these variants are grouped together as Spectre and the third is dubbed Meltdown.
+Meltdown and Spectre are the names given to different variants of the same fundamental underlying vulnerability that affects nearly every computer chip manufactured in the last two decades<sup id="r1">[[1]](#1)</sup>. If exploited, these vulnerabilities allow attackers to get access to data previously considered completely protected. Security researchers discovered the flaws late in 2017 and publicized them in early 2018. Technically speaking, there are three variations of the vulnerability, each given its own CVE number; two of these variants are grouped together as Spectre and the third is dubbed Meltdown.
 
-Common Vulnerability and Exposure<sup>[[2]](#2)</sup> (CVE):
+Common Vulnerability and Exposure<sup id="r2">[[2]](#2)</sup> (CVE):
 - Bounds Check Bypass: `CVE-2017-5753` (Spectre Variant 1)
 - Branch Target Injection: `CVE-2017-5715` (Spectre Variant 2)
 - Rogue Data Cache Load: `CVE-2017-5754` (Meltdown Variant 3)
@@ -35,9 +35,9 @@ Spectre requires more intimate knowledge of the victim program's inner workings,
 
 Patches for Meltdown and Spectre generally mitigate the vulnerabilities by altering or disabling how software code makes use of the speculative execution and caching features built into the underlying hardware. The downside of this is that these features were designed to improve system performance, and so working around them can slow your systems down.
 
-Apple<sup>[[3]](#3)</sup> did not go into detail about their specific mitigations, but did say that there was no measurable reduction in performance in iOS or macOS. They also released full mitigation<sup>[[4]](#4)</sup> which is the ability to enable an additional CPU instruction and disable hyper-threading processing technology. Full mitigation further prevents unauthorized applications from exploiting Meltdown and Spectre among other things.
+Apple<sup id="r3">[[3]](#3)</sup> did not go into detail about their specific mitigations, but did say that there was no measurable reduction in performance in iOS or macOS. They also released full mitigation<sup id="r4">[[4]](#4)</sup> which is the ability to enable an additional CPU instruction and disable hyper-threading processing technology. Full mitigation further prevents unauthorized applications from exploiting Meltdown and Spectre among other things.
 
-Microsoft<sup>[[5]](#5)</sup> applied the following mitigations to Windows:
+Microsoft<sup id="r5">[[5]](#5)</sup> applied the following mitigations to Windows:
 
 | Vulnerability | CVE | Public vulnerability name | Windows changes |
 |:-|:-|:-|:-|
@@ -53,16 +53,16 @@ Microsoft's patch for Spectre Variant 2 also included a firmware change. They ha
 
 ### References
 
-1. <a href="https://www.csoonline.com/article/3247868/spectre-and-meltdown-explained-what-they-are-how-they-work-whats-at-risk.html" id="1">Spectre and Meltdown explained: What they are, how they work, what's at risk
+1. [^](#r1) <a href="https://www.csoonline.com/article/3247868/spectre-and-meltdown-explained-what-they-are-how-they-work-whats-at-risk.html" id="1">Spectre and Meltdown explained: What they are, how they work, what's at risk
 </a> <i>CSO</i>
 
-2. <a href="https://www.us-cert.gov/ncas/alerts/TA18-004A" id="2">Meltdown and Spectre Side-Channel Vulnerability Guidance</a> <i>Cybersecurity & Infrastructure Security Agency</i>
+2. [^](#r2) <a href="https://www.us-cert.gov/ncas/alerts/TA18-004A" id="2">Meltdown and Spectre Side-Channel Vulnerability Guidance</a> <i>Cybersecurity & Infrastructure Security Agency</i>
 
-3. <a href="https://support.apple.com/en-us/HT208394" id="3">About speculative execution vulnerabilities in ARM-based and Intel CPUs</a> <i>Apple</i>
+3. [^](#r3) <a href="https://support.apple.com/en-us/HT208394" id="3">About speculative execution vulnerabilities in ARM-based and Intel CPUs</a> <i>Apple</i>
 
-3. <a href="https://support.apple.com/en-us/HT210107" id="4">Additional mitigations for speculative execution vulnerabilities in Intel CPUs</a>  <i>Apple</i>
+3. [^](#r4) <a href="https://support.apple.com/en-us/HT210107" id="4">Additional mitigations for speculative execution vulnerabilities in Intel CPUs</a>  <i>Apple</i>
 
-5. <a href="https://www.microsoft.com/security/blog/2018/01/09/understanding-the-performance-impact-of-spectre-and-meltdown-mitigations-on-windows-systems/" id="5">Understanding the performance impact of Spectre and Meltdown mitigations on Windows Systems</a> <i>Microsoft</i>
+5. [^](#r5) <a href="https://www.microsoft.com/security/blog/2018/01/09/understanding-the-performance-impact-of-spectre-and-meltdown-mitigations-on-windows-systems/" id="5">Understanding the performance impact of Spectre and Meltdown mitigations on Windows Systems</a> <i>Microsoft</i>
 
 ---
 
