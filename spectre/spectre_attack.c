@@ -30,10 +30,14 @@ void flushSideChannel()
   int i;
   // Write to array to bring it to RAM to prevent Copy-on-write
   for (i = 0; i < 256; i++)
+  {
     array[i * 4096 + DELTA] = 1;
+  }
   //flush the values of the array from cache
   for (i = 0; i < 256; i++)
+  {
     _mm_clflush(&array[i * 4096 + DELTA]);
+  }
 }
 
 void reloadSideChannel()
