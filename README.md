@@ -53,13 +53,13 @@ Microsoft's patch for Spectre Variant 2 also included a firmware change. They ha
 
 ### References
 
-1. [^](#r1) <a href="https://www.csoonline.com/article/3247868/spectre-and-meltdown-explained-what-they-are-how-they-work-whats-at-risk.html" id="1">"Spectre and Meltdown explained: What they are, how they work, what's at risk" </a> <i>CSO</i>
+1. [^](#r1) <a href="https://www.csoonline.com/article/3247868/spectre-and-meltdown-explained-what-they-are-how-they-work-whats-at-risk.html" id="1">"Spectre and Meltdown explained: What they are, how they work, what's at risk"</a> <i>CSO</i>
 
 2. [^](#r2) <a href="https://www.us-cert.gov/ncas/alerts/TA18-004A" id="2">"Meltdown and Spectre Side-Channel Vulnerability Guidance"</a> <i>Cybersecurity & Infrastructure Security Agency</i>
 
 3. [^](#r3) <a href="https://support.apple.com/en-us/HT208394" id="3">"About speculative execution vulnerabilities in ARM-based and Intel CPUs"</a> <i>Apple</i>
 
-3. [^](#r4) <a href="https://support.apple.com/en-us/HT210107" id="4">"Additional mitigations for speculative execution vulnerabilities in Intel CPUs"</a>  <i>Apple</i>
+3. [^](#r4) <a href="https://support.apple.com/en-us/HT210107" id="4">"Additional mitigations for speculative execution vulnerabilities in Intel CPUs"</a> <i>Apple</i>
 
 5. [^](#r5) <a href="https://www.microsoft.com/security/blog/2018/01/09/understanding-the-performance-impact-of-spectre-and-meltdown-mitigations-on-windows-systems/" id="5">"Understanding the performance impact of Spectre and Meltdown mitigations on Windows Systems"</a> <i>Microsoft</i>
 
